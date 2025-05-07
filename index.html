@@ -65,20 +65,15 @@
     .banner-content {
       position: relative;
       z-index: 10;
-      color: white;
-      text-align: center;
-    }
-    .banner h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .banner p {
-      font-size: 1.25rem;
     }
     /* Section styling */
     section {
       margin-top: 100px; /* To avoid overlap with fixed navigation */
+    }
+    .bordered-section {
+      border: 2px solid white;
+      padding: 2rem;
+      border-radius: 10px;
     }
     /* Back to Top Button */
     #backToTop {
@@ -100,6 +95,22 @@
         flex-direction: column;
         gap: 1rem;
       }
+      .nav-bar a {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+      .banner {
+        height: 60vh;
+      }
+      section {
+        padding: 1rem;
+      }
+      .bordered-section {
+        border-width: 1px;
+      }
+      #backToTop {
+        padding: 0.5rem 0.75rem;
+      }
     }
   </style>
 </head>
@@ -115,87 +126,67 @@
 
   <!-- Banner Section -->
   <div class="banner">
-    <div class="banner-content">
-      <h1>Welcome to SSN PICTURES</h1>
-      <p>Lights, Camera, Entertainment!</p>
-    </div>
+    <!-- Only Banner Image -->
   </div>
 
   <!-- Main Content -->
   <main class="space-y-28">
     <!-- About Section -->
-    <section id="about" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png')] bg-fixed bg-center bg-cover" data-aos="fade-up">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl">
-        <h2 class="text-3xl font-semibold mb-4 text-white">About</h2>
-        <p class="text-lg text-white">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
-        <p class="mt-2 text-white">🎥 Lights. Camera. Entertainment.</p>
-      </div>
+    <section id="about" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png')] bg-fixed bg-center bg-cover bordered-section" data-aos="fade-up">
+      <h2 class="text-3xl font-semibold mb-4 text-white">About</h2>
+      <p class="text-lg text-white">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
+      <p class="mt-2 text-white">🎥 Lights. Camera. Entertainment.</p>
     </section>
 
     <!-- Members Section -->
-    <section id="members" class="section bg-black" data-aos="fade-right">
-      <div class="p-8 rounded-xl max-w-2xl">
-        <h2 class="text-3xl font-semibold mb-4 text-white">Members</h2>
-        <ul class="list-disc list-inside space-y-2 text-lg text-white">
-          <li>GOURAV SIDDARTH SIDDOJU</li>
-          <li>SREETHAN</li>
-          <li>VIGNESH</li>
-        </ul>
-      </div>
+    <section id="members" class="section bg-black bordered-section" data-aos="fade-right">
+      <h2 class="text-3xl font-semibold mb-4 text-white">Members</h2>
+      <ul class="list-disc list-inside space-y-2 text-lg text-white">
+        <li>GOURAV SIDDARTH SIDDOJU</li>
+        <li>SREETHAN</li>
+        <li>VIGNESH</li>
+      </ul>
     </section>
 
     <!-- Discography Section -->
-    <section id="discography" class="section bg-black" data-aos="fade-left">
-      <div class="p-8 rounded-xl max-w-2xl">
-        <h2 class="text-3xl font-semibold mb-4 text-white">Discography</h2>
-        <p class="text-lg text-white">🎶 No albums yet. Stay tuned!</p>
-      </div>
+    <section id="discography" class="section bg-black bordered-section" data-aos="fade-left">
+      <h2 class="text-3xl font-semibold mb-4 text-white">Discography</h2>
+      <p class="text-lg text-white">🎶 No albums yet. Stay tuned!</p>
     </section>
 
     <!-- Short Films Section -->
-    <section id="films" class="section bg-black" data-aos="zoom-in">
-      <div class="p-8 rounded-xl max-w-4xl space-y-10 w-full">
-        <h2 class="text-3xl font-semibold mb-6 text-white text-center">Short Films</h2>
+    <section id="films" class="section bg-black bordered-section" data-aos="zoom-in">
+      <div class="w-full text-center">
+        <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg?raw=true" alt="Camera Image" class="rounded-lg w-full h-auto object-cover">
+      </div>
 
-        <!-- Camera Animation -->
-        <div class="flex justify-center" data-aos="fade-up">
-          <lottie-player
-            src="https://assets9.lottiefiles.com/packages/lf20_GEg3eSP8Da.json"
-            background="transparent"
-            speed="1"
-            style="width: 200px; height: 200px;"
-            loop autoplay>
-          </lottie-player>
+      <!-- Film 1 -->
+      <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-full md:w-1/3">
+          <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
         </div>
-
-        <!-- Film 1 -->
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-full md:w-1/3">
-            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold text-white">ANGER</h3>
-            <p><strong class="text-white">Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
-            <p><strong class="text-white">Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
-          </div>
+        <div class="w-full md:w-2/3 space-y-2">
+          <h3 class="text-xl font-bold text-white">ANGER</h3>
+          <p><strong class="text-white">Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
+          <p><strong class="text-white">Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
         </div>
+      </div>
 
-        <!-- Film 2 -->
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
-          <div class="w-full md:w-1/3">
-            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/Vmake1744655724489.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold text-white">GOETY (Upcoming)</h3>
-            <p><strong class="text-white">Teaser:</strong> <em class="text-gray-400">Yet to come</em></p>
-            <p><strong class="text-white">Short Film:</strong> <em class="text-gray-400">Yet to come</em></p>
-          </div>
+      <!-- Film 2 -->
+      <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
+        <div class="w-full md:w-1/3">
+          <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/Vmake1744655724489.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
+        </div>
+        <div class="w-full md:w-2/3 space-y-2">
+          <h3 class="text-xl font-bold text-white">GOETY (Upcoming)</h3>
+          <p><strong class="text-white">Teaser:</strong> <em class="text-gray-400">Yet to come</em></p>
+          <p><strong class="text-white">Short Film:</strong> <em class="text-gray-400">Yet to come</em></p>
         </div>
       </div>
     </section>
 
     <!-- Channel Link Section -->
-    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover" data-aos="fade-up">
+    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover bordered-section" data-aos="fade-up">
       <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
         <h2 class="text-3xl font-semibold mb-4 text-white">Subscribe to Our Channel</h2>
         <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-yellow-400 text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-yellow-500">📺 Visit SSN PICTURES</a>
