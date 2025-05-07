@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
     html {
       scroll-behavior: smooth;
@@ -25,7 +24,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #ffffff;
+      background-color: yellow;
       color: #000;
       padding: 0.75rem 1rem;
       border-radius: 9999px;
@@ -37,6 +36,32 @@
     .back-to-top:hover {
       background-color: #e5e5e5;
     }
+    /* Navigation buttons under banner fixed to top */
+    nav {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    }
+
+    nav a {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
 <body class="text-white relative">
@@ -44,15 +69,16 @@
   <!-- Header with Banner -->
   <header class="w-full z-50 shadow-lg relative">
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
-    <!-- Navigation Buttons -->
-    <nav class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-black bg-opacity-60 p-2 rounded-full text-sm font-semibold">
-      <a href="#about" class="px-4 py-2 hover:bg-white hover:text-black rounded-full transition">About</a>
-      <a href="#members" class="px-4 py-2 hover:bg-white hover:text-black rounded-full transition">Members</a>
-      <a href="#discography" class="px-4 py-2 hover:bg-white hover:text-black rounded-full transition">Discography</a>
-      <a href="#films" class="px-4 py-2 hover:bg-white hover:text-black rounded-full transition">Short Films</a>
-      <a href="#channel" class="px-4 py-2 hover:bg-white hover:text-black rounded-full transition">Channel</a>
-    </nav>
   </header>
+
+  <!-- Navigation Buttons -->
+  <nav>
+    <a href="#about" class="hover:bg-white hover:text-black">About</a>
+    <a href="#members" class="hover:bg-white hover:text-black">Members</a>
+    <a href="#discography" class="hover:bg-white hover:text-black">Discography</a>
+    <a href="#films" class="hover:bg-white hover:text-black">Short Films</a>
+    <a href="#channel" class="hover:bg-white hover:text-black">Channel</a>
+  </nav>
 
   <main class="space-y-28">
 
@@ -66,7 +92,8 @@
     </section>
 
     <!-- Members Section -->
-    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/AA%20mugguru.jpg')] bg-fixed flex items-center justify-center px-6" data-aos="fade-right">
+    <!-- Members Section -->
+    <section id="members" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/production_house.gif')] bg-fixed bg-cover bg-center flex items-center justify-center px-6" data-aos="fade-right">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
         <ul class="list-disc list-inside space-y-2 text-lg text-left">
@@ -77,32 +104,20 @@
       </div>
     </section>
 
+
+
     <!-- Discography Section -->
     <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
         <h2 class="text-3xl font-semibold mb-4">Discography</h2>
         <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
       </div>
     </section>
 
     <!-- Short Films Section -->
-    <section id="films" class="section bg-[url('https://images.unsplash.com/photo-1581093588401-55cb83c1bb0a?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
+    <section id="films" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY_2.gif?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
         <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
-
-        <!-- Camera Animation -->
-        <div class="flex justify-center" data-aos="fade-up">
-          <div class="relative w-40 h-40">
-            <lottie-player
-              src="https://assets9.lottiefiles.com/packages/lf20_GEg3eSP8Da.json"
-              background="transparent"
-              speed="1"
-              loop
-              autoplay>
-            </lottie-player>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-yellow-300 opacity-10 blur-3xl rounded-full pointer-events-none"></div>
-          </div>
-        </div>
 
         <!-- Film 1 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
@@ -119,7 +134,7 @@
         <!-- Film 2 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
           <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/Vmake1744655724489.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
+            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
@@ -151,10 +166,12 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: false,
+    mirror: true
     });
+
 
     // Show/hide back to top button
     const backToTop = document.getElementById("backToTop");
