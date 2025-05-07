@@ -14,6 +14,9 @@
     }
     body {
       font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
     .section {
       min-height: 100vh;
@@ -22,11 +25,42 @@
       justify-content: center;
       padding: 2rem;
     }
+    /* Fixed Navigation Bar */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #000;
+      z-index: 50;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+    .nav-bar a {
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      background-color: #FBBF24;
+      border-radius: 9999px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .nav-bar a:hover {
+      background-color: #F59E0B;
+    }
+    /* Section styling */
+    section {
+      margin-top: 100px; /* To avoid overlap with fixed navigation */
+    }
+    /* Back to Top Button */
     #backToTop {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background-color: #FBBF24; /* Yellow color */
+      background-color: #FBBF24;
       color: black;
       border: none;
       padding: 0.5rem 1rem;
@@ -35,26 +69,29 @@
       z-index: 50;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .nav-bar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
-<body class="text-white bg-black">
+<body class="bg-black">
 
-  <!-- Header -->
-  <header class="relative w-full z-50">
-    <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
+  <!-- Fixed Navigation Bar -->
+  <div class="nav-bar">
+    <a href="#about">About</a>
+    <a href="#members">Members</a>
+    <a href="#discography">Discography</a>
+    <a href="#films">Short Films</a>
+  </div>
 
-    <!-- Navigation Buttons -->
-    <nav class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4">
-      <a href="#about" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition">About</a>
-      <a href="#members" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition">Members</a>
-      <a href="#discography" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition">Discography</a>
-      <a href="#films" class="bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-500 transition">Short Films</a>
-    </nav>
-  </header>
-
+  <!-- Main Content -->
   <main class="space-y-28">
     <!-- About Section -->
-    <section id="about" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png')] bg-fixed bg-center bg-cover" data-aos="fade-up">
+    <section id="about" class="section bg-[url('https://images.unsplash.com/photo-1581091012184-e5cba6d1c5af?auto=format&fit=crop&w=1400&q=80')] bg-fixed bg-center bg-cover" data-aos="fade-up">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
         <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
@@ -62,7 +99,7 @@
       </div>
     </section>
 
-    <!-- Members -->
+    <!-- Members Section -->
     <section id="members" class="section bg-black" data-aos="fade-right">
       <div class="p-8 rounded-xl max-w-2xl">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
@@ -74,7 +111,7 @@
       </div>
     </section>
 
-    <!-- Discography -->
+    <!-- Discography Section -->
     <section id="discography" class="section bg-black" data-aos="fade-left">
       <div class="p-8 rounded-xl max-w-2xl">
         <h2 class="text-3xl font-semibold mb-4">Discography</h2>
@@ -82,7 +119,7 @@
       </div>
     </section>
 
-    <!-- Short Films -->
+    <!-- Short Films Section -->
     <section id="films" class="section bg-black" data-aos="zoom-in">
       <div class="p-8 rounded-xl max-w-4xl space-y-10 w-full">
         <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
@@ -124,7 +161,7 @@
       </div>
     </section>
 
-    <!-- Channel Link -->
+    <!-- Channel Link Section -->
     <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover" data-aos="fade-up">
       <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
