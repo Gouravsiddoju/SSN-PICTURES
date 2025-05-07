@@ -51,6 +51,38 @@
     .nav-bar a:hover {
       background-color: #F59E0B;
     }
+    /* Banner styling */
+    .banner {
+      background: url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png') center center no-repeat;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .banner-content {
+      position: relative;
+      z-index: 10;
+      color: white;
+      text-align: center;
+    }
+    .banner h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .banner p {
+      font-size: 1.25rem;
+    }
     /* Section styling */
     section {
       margin-top: 100px; /* To avoid overlap with fixed navigation */
@@ -88,10 +120,19 @@
     <a href="#films">Short Films</a>
   </div>
 
+  <!-- Banner Section -->
+  <div class="banner">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <h1>Welcome to SSN PICTURES</h1>
+      <p>Creating unforgettable moments on screen</p>
+    </div>
+  </div>
+
   <!-- Main Content -->
   <main class="space-y-28">
     <!-- About Section -->
-    <section id="about" class="section bg-[url('https://images.unsplash.com/photo-1581091012184-e5cba6d1c5af?auto=format&fit=crop&w=1400&q=80')] bg-fixed bg-center bg-cover" data-aos="fade-up">
+    <section id="about" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png')] bg-fixed bg-center bg-cover" data-aos="fade-up">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
         <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
