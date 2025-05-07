@@ -20,23 +20,27 @@
     }
   </style>
 </head>
-<body class="text-white bg-black">
-  <header class="w-full z-50 shadow-lg">
+<body class="text-white">
+
+  <!-- Navigation Buttons -->
+  <nav class="bg-black bg-opacity-90 fixed w-full z-50 top-0 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-center gap-4 flex-wrap">
+      <a href="#about" class="text-white hover:text-yellow-300 font-semibold transition">About</a>
+      <a href="#members" class="text-white hover:text-yellow-300 font-semibold transition">Members</a>
+      <a href="#discography" class="text-white hover:text-yellow-300 font-semibold transition">Discography</a>
+      <a href="#films" class="text-white hover:text-yellow-300 font-semibold transition">Short Films</a>
+      <a href="#channel" class="text-white hover:text-yellow-300 font-semibold transition">Channel</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="w-full pt-20 z-40 shadow-lg">
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
-    
-    <!-- Navigation Buttons -->
-    <nav class="bg-black bg-opacity-80 p-4 flex flex-wrap justify-center gap-4">
-      <a href="#about" class="px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">About</a>
-      <a href="#members" class="px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">Members</a>
-      <a href="#discography" class="px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">Discography</a>
-      <a href="#films" class="px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">Short Films</a>
-      <a href="#channel" class="px-4 py-2 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition">Channel</a>
-    </nav>
   </header>
 
   <main class="space-y-28">
     <!-- About Section -->
-    <section id="about" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?auto=format&fit=crop&w=1400&q=80')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
+    <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
         <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
@@ -45,7 +49,7 @@
     </section>
 
     <!-- Members -->
-    <section id="members" class="section bg-[url('https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/AA%20mugguru.jpg')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-right">
+    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/AA%20mugguru.jpg')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-right">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
         <ul class="list-disc list-inside space-y-2 text-lg">
@@ -86,7 +90,7 @@
         <!-- Film 1 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
           <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
+            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">ANGER</h3>
@@ -98,7 +102,7 @@
         <!-- Film 2 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
           <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/Vmake1744655724489.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
+            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/Vmake1744655724489.png" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
@@ -117,6 +121,11 @@
       </div>
     </section>
   </main>
+
+  <!-- Back to Top Button -->
+  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-5 right-5 bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition">
+    ⬆ Back to Top
+  </button>
 
   <footer class="p-4 text-center text-sm text-gray-300 bg-black bg-opacity-90">
     &copy; 2025 SSN PICTURES. All rights reserved.
