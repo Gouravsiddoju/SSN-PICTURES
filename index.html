@@ -9,38 +9,52 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Montserrat', sans-serif;
-      scroll-behavior: smooth;
     }
     .section {
       min-height: 100vh;
-      background-size: cover;
-      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: #000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      display: none;
+      z-index: 50;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
-<body class="text-white">
-
-  <!-- Navigation Buttons -->
-  <nav class="bg-black bg-opacity-90 fixed w-full z-50 top-0 shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-center gap-4 flex-wrap">
-      <a href="#about" class="text-white hover:text-yellow-300 font-semibold transition">About</a>
-      <a href="#members" class="text-white hover:text-yellow-300 font-semibold transition">Members</a>
-      <a href="#discography" class="text-white hover:text-yellow-300 font-semibold transition">Discography</a>
-      <a href="#films" class="text-white hover:text-yellow-300 font-semibold transition">Short Films</a>
-      <a href="#channel" class="text-white hover:text-yellow-300 font-semibold transition">Channel</a>
-    </div>
-  </nav>
+<body class="text-white bg-black">
 
   <!-- Header -->
-  <header class="w-full pt-20 z-40 shadow-lg">
+  <header class="relative w-full z-50">
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
+
+    <!-- Navigation Buttons -->
+    <nav class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4">
+      <a href="#about" class="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition">About</a>
+      <a href="#members" class="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition">Members</a>
+      <a href="#discography" class="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition">Discography</a>
+      <a href="#films" class="bg-white text-black px-4 py-2 rounded-full font-semibold hover:bg-gray-300 transition">Short Films</a>
+    </nav>
   </header>
 
   <main class="space-y-28">
     <!-- About Section -->
-    <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
+    <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed bg-center bg-cover" data-aos="fade-up">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
         <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
@@ -49,8 +63,8 @@
     </section>
 
     <!-- Members -->
-    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/AA%20mugguru.jpg')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-right">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl">
+    <section id="members" class="section bg-black" data-aos="fade-right">
+      <div class="p-8 rounded-xl max-w-2xl">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
         <ul class="list-disc list-inside space-y-2 text-lg">
           <li>GOURAV SIDDARTH SIDDOJU</li>
@@ -61,36 +75,33 @@
     </section>
 
     <!-- Discography -->
-    <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-left">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl">
+    <section id="discography" class="section bg-black" data-aos="fade-left">
+      <div class="p-8 rounded-xl max-w-2xl">
         <h2 class="text-3xl font-semibold mb-4">Discography</h2>
         <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
       </div>
     </section>
 
     <!-- Short Films -->
-    <section id="films" class="section bg-[url('https://images.unsplash.com/photo-1581093588401-55cb83c1bb0a?auto=format&fit=crop&w=1400&q=80')] bg-fixed bg-center bg-cover flex items-center justify-center px-6" data-aos="zoom-in">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
+    <section id="films" class="section bg-black" data-aos="zoom-in">
+      <div class="p-8 rounded-xl max-w-4xl space-y-10 w-full">
         <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
 
         <!-- Camera Animation -->
         <div class="flex justify-center" data-aos="fade-up">
-          <div class="relative w-40 h-40">
-            <lottie-player
-              src="https://assets9.lottiefiles.com/packages/lf20_GEg3eSP8Da.json"
-              background="transparent"
-              speed="1"
-              loop
-              autoplay>
-            </lottie-player>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 bg-yellow-300 opacity-10 blur-3xl rounded-full pointer-events-none"></div>
-          </div>
+          <lottie-player
+            src="https://assets9.lottiefiles.com/packages/lf20_GEg3eSP8Da.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px;"
+            loop autoplay>
+          </lottie-player>
         </div>
 
         <!-- Film 1 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
           <div class="w-full md:w-1/3">
-            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
+            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">ANGER</h3>
@@ -102,7 +113,7 @@
         <!-- Film 2 -->
         <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
           <div class="w-full md:w-1/3">
-            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/Vmake1744655724489.png" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
+            <img src="https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/Vmake1744655724489.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
@@ -114,7 +125,7 @@
     </section>
 
     <!-- Channel Link -->
-    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
+    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover" data-aos="fade-up">
       <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
         <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-gray-200">📺 Visit SSN PICTURES</a>
@@ -122,22 +133,23 @@
     </section>
   </main>
 
-  <!-- Back to Top Button -->
-  <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-5 right-5 bg-yellow-400 text-black px-4 py-2 rounded-full shadow-lg hover:bg-yellow-300 transition">
-    ⬆ Back to Top
-  </button>
-
+  <!-- Footer -->
   <footer class="p-4 text-center text-sm text-gray-300 bg-black bg-opacity-90">
     &copy; 2025 SSN PICTURES. All rights reserved.
   </footer>
 
+  <!-- Back to Top Button -->
+  <button id="backToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑ Top</button>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true
-    });
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+
+    const backToTop = document.getElementById("backToTop");
+    window.onscroll = () => {
+      backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    };
   </script>
 </body>
 </html>
