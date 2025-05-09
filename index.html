@@ -38,29 +38,78 @@
     }
     /* Navigation buttons under banner fixed to top */
     nav {
-    position: fixed;
-    top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    /* Mobile Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 100;
+    }
+
+    .hamburger div {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+      nav .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: black;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        border-top: 2px solid white;
+      }
+
+      nav .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
     }
 
     nav a {
-    background-color: black;
-    color: white;
-    border: 2px solid white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 9999px;
-    transition: background-color 0.3s ease;
+      background-color: black;
+      color: white;
+      border: 2px solid white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      transition: background-color 0.3s ease;
     }
 
     nav a:hover {
       background-color: white;
       color: black;
+    }
+
+    /* Hide nav on scroll down */
+    .nav-hidden {
+      top: -60px; /* Adjust this value based on your navbar height */
     }
   </style>
 </head>
@@ -73,8 +122,16 @@
 
   <!-- Navigation Buttons -->
   <!-- Responsive Navigation Buttons -->
-  <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-xl px-4 py-2 flex justify-center">
-    <div class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-black bg-opacity-0 px-4 py-2 rounded-full">
+  <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-xl px-4 py-2 flex justify-between items-center">
+    <!-- Hamburger Icon -->
+    <button class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="nav-links flex gap-4 sm:gap-8 items-center">
       <a href="#about" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">About</a>
       <a href="#members" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Members</a>
       <a href="#discography" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Discography</a>
@@ -82,7 +139,6 @@
       <a href="#channel" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Channel</a>
     </div>
   </nav>
-
 
   <main class="space-y-28">
 
@@ -96,7 +152,6 @@
     </section>
 
     <!-- Members Section -->
-    <!-- Members Section -->
     <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed bg-cover bg-center flex items-center justify-center px-6" data-aos="fade-right">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
@@ -107,8 +162,6 @@
         </ul>
       </div>
     </section>
-
-
 
     <!-- Discography Section -->
     <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
@@ -170,12 +223,11 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-    duration: 1000,
-    easing: 'ease-in-out',
-    once: false,
-    mirror: true
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: false,
+      mirror: true
     });
-
 
     // Show/hide back to top button
     const backToTop = document.getElementById("backToTop");
@@ -188,6 +240,13 @@
     });
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Toggle hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
   </script>
 </body>
