@@ -5,17 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SSN PICTURES</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      plugins: [
-        function({ addUtilities }) {
-          addUtilities({
-            '.aspect-w-16': { 'aspect-ratio': '16 / 9' },
-          });
-        }
-      ]
-    }
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
@@ -25,6 +14,11 @@
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #000;
+    }
+    .section {
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
     }
     .back-to-top {
       position: fixed;
@@ -42,39 +36,69 @@
     .back-to-top:hover {
       background-color: #e5e5e5;
     }
+    /* Navigation buttons under banner fixed to top */
+    nav {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    }
+
+    nav a {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: white;
+      color: black;
+    }
   </style>
 </head>
 <body class="text-white relative">
-  <!-- Header -->
-  <header>
+
+  <!-- Header with Banner -->
+  <header class="w-full z-50 shadow-lg relative">
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
   </header>
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-70 z-50 px-4 py-2 flex flex-wrap items-center justify-between">
-    <div id="navLinks" class="hidden sm:flex flex-wrap gap-2 justify-center w-full sm:w-auto">
-      <a href="#about" class="px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black rounded-full transition">About</a>
-      <a href="#members" class="px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Members</a>
-      <a href="#discography" class="px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Discography</a>
-      <a href="#films" class="px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Short Films</a>
-      <a href="#channel" class="px-3 py-2 text-sm font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Channel</a>
+  <!-- Navigation Buttons -->
+  <!-- Responsive Navigation Buttons -->
+  <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-xl px-4 py-2 flex justify-center">
+    <div class="flex flex-wrap justify-center gap-2 sm:gap-4 bg-black bg-opacity-0 px-4 py-2 rounded-full">
+      <a href="#about" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">About</a>
+      <a href="#members" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Members</a>
+      <a href="#discography" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Discography</a>
+      <a href="#films" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Short Films</a>
+      <a href="#channel" class="px-3 py-1 sm:px-4 sm:py-2 text-sm sm:text-base font-semibold text-white hover:bg-white hover:text-black rounded-full transition">Channel</a>
     </div>
-    <button id="navToggle" class="sm:hidden text-white ml-auto">☰</button>
   </nav>
 
-  <main class="space-y-28 pt-24">
-    <!-- About -->
+
+  <main class="space-y-28">
+
+    <!-- About Section -->
     <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
-      <div class="bg-black bg-opacity-80 p-8 rounded-xl max-w-3xl text-center">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl text-center">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
-        <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact.</p>
+        <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
         <p class="mt-2">🎥 Lights. Camera. Entertainment.</p>
       </div>
     </section>
 
-    <!-- Members -->
+    <!-- Members Section -->
+    <!-- Members Section -->
     <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed bg-cover bg-center flex items-center justify-center px-6" data-aos="fade-right">
-      <div class="bg-black bg-opacity-80 p-8 rounded-xl max-w-2xl text-center">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
         <ul class="list-disc list-inside space-y-2 text-lg text-left">
           <li>GOURAV SIDDARTH SIDDOJU</li>
@@ -84,29 +108,30 @@
       </div>
     </section>
 
-    <!-- Discography -->
+
+
+    <!-- Discography Section -->
     <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
-      <div class="bg-black bg-opacity-80 p-8 rounded-xl max-w-2xl text-center">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
         <h2 class="text-3xl font-semibold mb-4">Discography</h2>
         <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
       </div>
     </section>
 
-    <!-- Short Films -->
+    <!-- Short Films Section -->
     <section id="films" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY_2.gif?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
-      <div class="bg-black bg-opacity-80 p-8 rounded-xl max-w-4xl space-y-10 w-full">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
         <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
 
         <!-- Film 1 -->
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up">
+        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
           <div class="w-full md:w-1/3">
             <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
-          <div class="w-full md:w-2/3 space-y-4">
+          <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">ANGER</h3>
-            <div class="aspect-w-16 w-full">
-              <iframe src="https://www.youtube.com/embed/meNXyQITMtY" frameborder="0" allowfullscreen class="w-full h-48 rounded-xl"></iframe>
-            </div>
+            <p><strong>Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
+            <p><strong>Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
           </div>
         </div>
 
@@ -115,18 +140,16 @@
           <div class="w-full md:w-1/3">
             <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
-          <div class="w-full md:w-2/3 space-y-4">
+          <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
-            <div class="aspect-w-16 w-full">
-              <iframe src="https://www.youtube.com/embed/NC9m6Ih0FUs" frameborder="0" allowfullscreen class="w-full h-48 rounded-xl"></iframe>
-            </div>
-            <p class="text-gray-400">RELEASING ON MAY 30th</p>
+            <p><strong>Teaser:</strong> <a href="https://youtu.be/NC9m6Ih0FUs" class="text-blue-400 underline">Watch</a></p>
+            <p><strong>Short Film:</strong> <a class="text-gray-400">RELEASING ON MAY 30th</a></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Channel -->
+    <!-- Channel Section -->
     <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
       <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
@@ -140,26 +163,31 @@
     &copy; 2025 SSN PICTURES. All rights reserved.
   </footer>
 
-  <!-- Back to Top -->
+  <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">⬆ Top</div>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1000, easing: 'ease-in-out', once: false, mirror: true });
+    AOS.init({
+    duration: 1000,
+    easing: 'ease-in-out',
+    once: false,
+    mirror: true
+    });
 
-    // Back to top button
+
+    // Show/hide back to top button
     const backToTop = document.getElementById("backToTop");
     window.addEventListener("scroll", () => {
-      backToTop.style.display = window.scrollY > 500 ? "block" : "none";
+      if (window.scrollY > 500) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
     });
-    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-    // Nav toggle
-    const toggleBtn = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
-    toggleBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("hidden");
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
