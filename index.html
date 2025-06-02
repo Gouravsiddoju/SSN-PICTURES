@@ -28,14 +28,33 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 0 1rem; transition: top 0.3s ease;
     }
-    .loader {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #ff0000; /* Red top border */
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
+    .dots-loader {
+      font-size: 3rem;
+      color: #ff0000; /* Red dots */
+      display: flex;
     }
+    
+    .dots-loader span {
+      animation: fade 1s infinite;
+    }
+    
+    .dots-loader span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .dots-loader span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes fade {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    
+    #loader.hidden {
+      display: none;
+    }
+
     
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -143,15 +162,23 @@
       window.addEventListener('load', function() {
         document.getElementById('loader').classList.add('hidden');
       });
+    
+      // Fallback to hide loader after 10 seconds max
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 10000); // 10,000 ms = 10 sec
     </script>
+
 
 
   </style>
 </head>
-<body class="text-white relative">
-  <div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
-    <div class="loader"></div>
+<div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
+  <div class="dots-loader">
+    <span>.</span><span>.</span><span>.</span>
   </div>
+</div>
+
 
   <header>
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
