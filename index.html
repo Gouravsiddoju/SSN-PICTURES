@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/SSN%20PICTURES_transparent-.png" type="image/png">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SSN PICTURES</title>
+  <link rel="icon" href="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/SSN%20PICTURES_transparent-.png" type="image/png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Perpetua+Titling+MT&display=swap" rel="stylesheet">
@@ -29,69 +28,24 @@
       padding: 0 1rem; transition: top 0.3s ease;
     }
     .dots-loader {
-      font-size: 3rem;
-      color: #ff0000; /* Red dots */
-      display: flex;
+      font-size: 3rem; color: #ff0000; display: flex;
     }
-    
-    .dots-loader span {
-      animation: fade 1s infinite;
-    }
-    
-    .dots-loader span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-    
-    .dots-loader span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-    
-    @keyframes fade {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-    
-    #loader.hidden {
-      display: none;
-    }
+    .dots-loader span { animation: fade 1s infinite; }
+    .dots-loader span:nth-child(2) { animation-delay: 0.2s; }
+    .dots-loader span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes fade { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    #loader.hidden { display: none; }
 
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    #loader.hidden {
-      display: none;
-    }
-
-
-    /* Hamburger Styles with Animation */
     .hamburger {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
-      padding: 0; /* Remove extra padding */
+      display: flex; flex-direction: column; justify-content: space-around;
+      width: 30px; height: 25px; background: transparent; border: none;
+      cursor: pointer; z-index: 100; padding: 0;
     }
-    .hamburger div {
-      width: 30px; height: 3px; background-color: white; border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
+    .hamburger div { width: 30px; height: 3px; background-color: white; border-radius: 5px; transition: all 0.3s ease; }
+    .hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active div:nth-child(2) { opacity: 0; }
+    .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
     nav a {
       background-color: black; color: white; border: 2px solid white;
@@ -108,192 +62,119 @@
     @media screen {
       .hamburger { display: flex; }
       .nav-links {
-        display: flex; /* Always flex for animation */
-        flex-direction: column;
-        align-items: center; /* Center the links */
-        gap: 0.5rem; /* Reduce gap between items */
-        background-color: rgba(0, 0, 0, 0.95); /* Slight transparency */
-        position: absolute;
-        top: 3.5rem;
-        left: 1rem; /* Align to the right */
-        width: auto; /* Adjust width dynamically */
-        padding: 1rem 1.5rem;
-        border-radius: 0.5rem;
-        opacity: 0;
-        transform: scaleY(0);
-        transform-origin: top;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        pointer-events: none; /* Prevent interaction when hidden */
+        display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.95);
+        position: absolute; top: 3.5rem; left: 1rem;
+        padding: 1rem 1.5rem; border-radius: 0.5rem;
+        opacity: 0; transform: scaleY(0); transform-origin: top;
+        transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none;
       }
-      nav .nav-links.active {
-        opacity: 1;
-        transform: scaleY(1);
-        pointer-events: auto;
-      }
+      .nav-links.active { opacity: 1; transform: scaleY(1); pointer-events: auto; }
     }
 
-    /* Glow animation */
     @keyframes glow-animation {
-      from {
-        text-shadow:
-          0 0 5px #fff,
-          0 0 10px #f00,
-          0 0 20px #f00,
-          0 0 30px #f00,
-          0 0 40px #f00;
-      }
-      to {
-        text-shadow:
-          0 0 10px #fff,
-          0 0 20px #f00,
-          0 0 30px #f00,
-          0 0 40px #f00,
-          0 0 50px #f00;
-      }
+      from { text-shadow: 0 0 5px #fff, 0 0 10px #f00, 0 0 20px #f00; }
+      to { text-shadow: 0 0 10px #fff, 0 0 20px #f00, 0 0 30px #f00; }
     }
-
-    
-    /* Apply glow to all text elements */
-    h1, h2, h4, h5, h6 {
-      color: #fff; /* keep text white */
-      animation: glow-animation 1.5s infinite alternate;
-    }
-    <script>
-      window.addEventListener('load', function() {
-        document.getElementById('loader').classList.add('hidden');
-      });
-    
-      // Fallback to hide loader after 10 seconds max
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 10000); // 10,000 ms = 10 sec
-    </script>
-
-
-
+    h1, h2, h3, h4, h5, h6 { color: #fff; animation: glow-animation 1.5s infinite alternate; }
   </style>
 </head>
+<body>
 <div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
-  <div class="dots-loader">
-    <span>.</span><span>.</span><span>.</span>
-  </div>
+  <div class="dots-loader"><span>.</span><span>.</span><span>.</span></div>
 </div>
 
+<header>
+  <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
+</header>
 
-  <header>
-    <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
-  </header>
+<nav>
+  <button class="hamburger" id="hamburger"><div></div><div></div><div></div></button>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#members">Members</a>
+    <a href="#discography">Discography</a>
+    <a href="#films">Short Films</a>
+    <a href="#channel">Channel</a>
+  </div>
+</nav>
 
-  <nav>
-    <button class="hamburger" id="hamburger">
-      <div></div><div></div><div></div>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About</a>
-      <a href="#members">Members</a>
-      <a href="#discography">Discography</a>
-      <a href="#films">Short Films</a>
-      <a href="#channel">Channel</a>
+<main class="space-y-28">
+  <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
+    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl text-center">
+      <h2 class="text-3xl font-semibold mb-4">About</h2>
+      <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact.</p>
     </div>
-  </nav>
+  </section>
 
-  <main class="space-y-28">
-   <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl text-center">
-        <h2 class="text-3xl font-semibold mb-4">About</h2>
-        <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
-        <p class="mt-2">🎥 Lights. Camera. Entertainment.</p>
+  <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed flex items-center justify-center px-6" data-aos="fade-right">
+    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
+      <h2 class="text-3xl font-semibold mb-4">Members</h2>
+      <ul class="list-disc list-inside space-y-2 text-lg text-left">
+        <li>GOURAV SIDDARTH SIDDOJU</li>
+        <li>SREETHAN</li>
+        <li>VIGNESH</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
+    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
+      <h2 class="text-3xl font-semibold mb-4">Discography</h2>
+      <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
+    </div>
+  </section>
+
+  <section id="films" class="section bg-black flex flex-col items-center justify-center px-6" data-aos="zoom-in">
+    <h2 class="text-3xl font-semibold mb-4 text-center">GOETY - Full Short Film</h2>
+    <div class="w-full max-w-4xl">
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe class="w-full h-full" src="https://www.youtube.com/embed/UCW2zcRmJzU" frameborder="0" allowfullscreen></iframe>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed bg-cover bg-center flex items-center justify-center px-6" data-aos="fade-right">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
-        <h2 class="text-3xl font-semibold mb-4">Members</h2>
-        <ul class="list-disc list-inside space-y-2 text-lg text-left">
-          <li>GOURAV SIDDARTH SIDDOJU</li>
-          <li>SREETHAN</li>
-          <li>VIGNESH</li>
-        </ul>
-      </div>
-    </section>
+  <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
+    <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
+      <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
+      <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-gray-200">📺 Visit SSN PICTURES</a>
+    </div>
+  </section>
+</main>
 
-    <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
-        <h2 class="text-3xl font-semibold mb-4">Discography</h2>
-        <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
-      </div>
-    </section>
+<footer class="p-4 text-center text-sm text-gray-300 bg-black bg-opacity-90">&copy; 2025 SSN PICTURES. All rights reserved.</footer>
 
-    <section id="films" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY_2.gif?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold">ANGER</h3>
-            <p><strong>Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
-            <p><strong>Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
-          </div>
-        </div>
+<div class="back-to-top" id="backToTop">⬆ Top</div>
 
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
-          <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
-            <p><strong>Teaser:</strong> <a href="https://youtu.be/NC9m6Ih0FUs" class="text-blue-400 underline">Watch</a></p>
-            <p><strong>Short Film:</strong> <a href="https://youtu.be/UCW2zcRmJzU" class="text-blue-400 underline">RELEASING ON JUNE 5th</a></p>
-          </div>
-        </div>
-      </div>
-    </section>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
 
-    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
-      <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
-        <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
-        <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-gray-200">📺 Visit SSN PICTURES</a>
-        <div class="text-center mt-4">
-        <a href="mailto:gourav.siddu@gmail.com" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-          Contact Us
-        </a>
-      </div>
-        <div class="text-center mt-4">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfenxcJWP4KlHc-81crUnmcULAq1fUrblvZjq-P9-Gch4S83w/viewform?usp=dialog" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full">
-            Feedback Us
-          </a>
-        </div>
+  window.addEventListener('load', function() {
+    document.getElementById('loader').classList.add('hidden');
+  });
 
-      </div>
-    </section>
-  </main>
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+  }, 10000);
 
-  <footer class="p-4 text-center text-sm text-gray-300 bg-black bg-opacity-90">
-    &copy; 2025 SSN PICTURES. All rights reserved.
-  </footer>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
 
-  <div class="back-to-top" id="backToTop">⬆ Top</div>
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, easing: 'ease-in-out', once: false, mirror: true });
-
-    const backToTop = document.getElementById("backToTop");
-    window.addEventListener("scroll", () => {
-      backToTop.style.display = window.scrollY > 500 ? "block" : "none";
-    });
-    backToTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-  </script>
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTop.style.display = 'block';
+    } else {
+      backToTop.style.display = 'none';
+    }
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 </body>
 </html>
