@@ -29,11 +29,19 @@
 
     /* Hamburger Styles with Animation */
     .hamburger {
-      display: none; flex-direction: column; justify-content: space-around;
-      width: auto; height: 25px; background: transparent; border: none; cursor: pointer; z-index: 100;
+      display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 100;
+        padding: 0; /* Remove extra padding */
     }
     .hamburger div {
-      width: auto; height: 3px; background-color: white; border-radius: 5px;
+      width: 30px; height: 3px; background-color: white; border-radius: 5px;
       transition: all 0.3s ease;
     }
     .hamburger.active div:nth-child(1) {
@@ -61,16 +69,27 @@
     @media screen {
       .hamburger { display: flex; }
       .nav-links {
-        flex-direction: column; gap: 1rem;
-        background-color: black; position: absolute;
-        top: 4rem; left: 0; width: 100%;
-        padding: 1rem 0; border-top: 2px solid white;
-        transform: translateY(-100%); opacity: 0; visibility: hidden;
-        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s;
-      }
-      .nav-links.active {
-        transform: translateY(0); opacity: 1; visibility: visible;
+        display: flex; /* Always flex for animation */
+        flex-direction: column;
+        align-items: center; /* Center the links */
+        gap: 0.5rem; /* Reduce gap between items */
+        background-color: rgba(0, 0, 0, 0.95); /* Slight transparency */
+        position: absolute;
+        top: 3.5rem;
+        right: 1rem; /* Align to the right */
+        width: auto; /* Adjust width dynamically */
+        padding: 1rem 1.5rem;
+        border-radius: 0.5rem;
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
         transition: transform 0.3s ease, opacity 0.3s ease;
+        pointer-events: none; /* Prevent interaction when hidden */
+      }
+      nav .nav-links.active {
+        opacity: 1;
+        transform: scaleY(1);
+        pointer-events: auto;
       }
     }
   </style>
