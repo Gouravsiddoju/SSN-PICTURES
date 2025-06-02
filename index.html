@@ -9,119 +9,82 @@
   <link href="https://fonts.googleapis.com/css2?family=Perpetua+Titling+MT&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Perpetua Titling MT', sans-serif;
-      background-color: #000;
-    }
-    .section {
-      min-height: 100vh;
-      background-size: cover;
-      background-position: center;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Perpetua Titling MT', sans-serif; background-color: #000; }
+    .section { min-height: 100vh; background-size: cover; background-position: center; }
     .back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: yellow;
-      color: #000;
-      padding: 0.75rem 1rem;
-      border-radius: 9999px;
-      font-weight: bold;
-      cursor: pointer;
-      display: none;
-      z-index: 999;
+      position: fixed; bottom: 20px; right: 20px;
+      background-color: yellow; color: #000;
+      padding: 0.75rem 1rem; border-radius: 9999px;
+      font-weight: bold; cursor: pointer; display: none; z-index: 999;
     }
-    .back-to-top:hover {
-      background-color: #e5e5e5;
-    }
+    .back-to-top:hover { background-color: #e5e5e5; }
+
     nav {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 50;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      width: 100%;
-      transition: top 0.3s ease;
+      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
+      z-index: 50; width: 100%; max-width: 1200px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 1rem; transition: top 0.3s ease;
     }
+
+    /* Hamburger Styles with Animation */
     .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 25px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 100;
+      display: none; flex-direction: column; justify-content: space-around;
+      width: 30px; height: 25px; background: transparent; border: none; cursor: pointer; z-index: 100;
     }
     .hamburger div {
-      width: 30px;
-      height: 3px;
-      background-color: white;
-      border-radius: 5px;
+      width: 30px; height: 3px; background-color: white; border-radius: 5px;
+      transition: all 0.3s ease;
     }
-    @media screen and (max-width: 768px) {
-      nav .nav-links {
-        display: none;
-        flex-direction: column;
-        gap: 1rem;
-        background-color: black;
-        position: absolute;
-        top: 4rem;
-        left: 0;
-        width: 100%;
-        padding: 1rem 0;
-        border-top: 2px solid white;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0s 0.3s;
-      }
-      nav .nav-links.active {
-        display: flex;
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.3s ease, visibility 0s;
-      }
-      .hamburger {
-        display: flex;
-      }
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
     }
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     nav a {
-      background-color: black;
-      color: white;
-      border: 2px solid white;
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
+      background-color: black; color: white; border: 2px solid white;
+      padding: 0.5rem 1.5rem; border-radius: 9999px;
       transition: background-color 0.3s ease;
       font-family: 'Perpetua Titling MT', sans-serif;
     }
-    nav a:hover {
-      background-color: white;
-      color: black;
+    nav a:hover { background-color: white; color: black; }
+
+    .nav-links {
+      display: flex; gap: 1rem;
     }
-    .nav-hidden {
-      top: -60px;
+
+    @media screen and (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        flex-direction: column; gap: 1rem;
+        background-color: black; position: absolute;
+        top: 4rem; left: 0; width: 100%;
+        padding: 1rem 0; border-top: 2px solid white;
+        transform: translateY(-100%); opacity: 0; visibility: hidden;
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s 0.3s;
+      }
+      .nav-links.active {
+        transform: translateY(0); opacity: 1; visibility: visible;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
     }
   </style>
 </head>
 <body class="text-white relative">
-
   <header>
     <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
   </header>
 
-  <nav class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-screen-xl px-4 py-2 flex justify-between items-center">
+  <nav>
     <button class="hamburger" id="hamburger">
       <div></div><div></div><div></div>
     </button>
-    <div class="nav-links flex gap-4 sm:gap-8 items-center">
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#members">Members</a>
       <a href="#discography">Discography</a>
@@ -131,14 +94,15 @@
   </nav>
 
   <main class="space-y-28">
-    <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
+   <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl text-center">
         <h2 class="text-3xl font-semibold mb-4">About</h2>
-        <p class="text-lg">From gripping stories to laugh-out-loud moments, we bring you bite-sized cinema with big impact.</p>
+        <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
         <p class="mt-2">🎥 Lights. Camera. Entertainment.</p>
       </div>
     </section>
-    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed flex items-center justify-center px-6" data-aos="fade-right">
+
+    <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed bg-cover bg-center flex items-center justify-center px-6" data-aos="fade-right">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Members</h2>
         <ul class="list-disc list-inside space-y-2 text-lg text-left">
@@ -148,28 +112,31 @@
         </ul>
       </div>
     </section>
+
     <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
+      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
         <h2 class="text-3xl font-semibold mb-4">Discography</h2>
         <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
       </div>
     </section>
+
     <section id="films" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY_2.gif?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
       <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
         <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
+        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
           <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" class="rounded-lg w-full h-auto">
+            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">ANGER</h3>
-            <p><strong>Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY" class="text-blue-400 underline">Watch</a></p>
-            <p><strong>Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE" class="text-blue-400 underline">Watch</a></p>
+            <p><strong>Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
+            <p><strong>Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
           </div>
         </div>
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center">
+
+        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
           <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" class="rounded-lg w-full h-auto">
+            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
           </div>
           <div class="w-full md:w-2/3 space-y-2">
             <h3 class="text-xl font-bold">GOETY (Upcoming)</h3>
@@ -179,10 +146,11 @@
         </div>
       </div>
     </section>
-    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
+
+    <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
       <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
         <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
-        <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold hover:bg-gray-200">📺 Visit SSN PICTURES</a>
+        <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-gray-200">📺 Visit SSN PICTURES</a>
       </div>
     </section>
   </main>
@@ -196,6 +164,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 1000, easing: 'ease-in-out', once: false, mirror: true });
+
     const backToTop = document.getElementById("backToTop");
     window.addEventListener("scroll", () => {
       backToTop.style.display = window.scrollY > 500 ? "block" : "none";
@@ -203,12 +172,13 @@
     backToTop.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
     const hamburger = document.getElementById('hamburger');
-    const navLinks = document.querySelector('.nav-links');
+    const navLinks = document.getElementById('navLinks');
     hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
   </script>
-
 </body>
 </html>
