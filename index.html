@@ -92,6 +92,33 @@
         pointer-events: auto;
       }
     }
+
+    /* Glow animation */
+    @keyframes glow-animation {
+      from {
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #ff0,
+          0 0 20px #ff0,
+          0 0 30px #ff0,
+          0 0 40px #ff0;
+      }
+      to {
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff0,
+          0 0 30px #ff0,
+          0 0 40px #ff0,
+          0 0 50px #ff0;
+      }
+    }
+    
+    /* Apply glow to all text elements */
+    body, h1, h2, h3, h4, h5, h6, p, a, li, span, button {
+      color: #fff; /* keep text white */
+      animation: glow-animation 1.5s infinite alternate;
+    }
+
   </style>
 </head>
 <body class="text-white relative">
