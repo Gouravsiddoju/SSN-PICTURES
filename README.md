@@ -8,14 +8,3 @@ From gripping stories and emotional rollercoasters to laugh-out-loud moments and
 
 🎥 Lights. Camera. Entertainment.
 
-
-Links
-
-instagram
-instagram.com/gousiddoju_1161
-
-facebook
-facebook.com/gourav.siddoju
-
-X
-x.com/gourav_siddoju
