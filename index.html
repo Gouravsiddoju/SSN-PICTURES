@@ -3,211 +3,541 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSN PICTURES</title>
-  <link rel="icon" href="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/SSN%20PICTURES-.ico" type="image/x-icon">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <title>SSN PICTURES | Cinematic Short Films</title>
+  <link rel="icon" href="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/SSN%20PICTURES-.ico?raw=true" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Playfair Display', sans-serif; background-color: #000; color: white; }
-    .section { min-height: 100vh; background-size: cover; background-position: center; }
-    .back-to-top {
-      position: fixed; bottom: 20px; right: 20px;
-      background-color: yellow; color: #000;
-      padding: 0.75rem 1rem; border-radius: 9999px;
-      font-weight: bold; cursor: pointer; display: none; z-index: 999;
+    :root {
+      --primary-color: #E50914;
+      --secondary-color: #FFFFFF;
+      --background-color: #000000;
+      --text-color: #F5F5F1;
     }
-    .back-to-top:hover { background-color: #e5e5e5; }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    nav {
-      position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
-      z-index: 50; width: 100%; max-width: 1200px;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 1rem; transition: top 0.3s ease;
+    html {
+      scroll-behavior: smooth;
     }
-    .dots-loader {
-      font-size: 3rem; color: #ff0000; display: flex;
-    }
-    .dots-loader span { animation: fade 1s infinite; }
-    .dots-loader span:nth-child(2) { animation-delay: 0.2s; }
-    .dots-loader span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes fade { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    #loader.hidden { display: none; }
+
     body {
-      font-family: 'Playfair Display', sans-serif;
-      background-color: #000;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      overflow-x: hidden;
     }
 
-    .hamburger {
-      display: flex; flex-direction: column; justify-content: space-around;
-      width: 30px; height: 25px; background: transparent; border: none;
-      cursor: pointer; z-index: 100; padding: 0;
+    /* Preloader */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    .hamburger div { width: 30px; height: 3px; background-color: white; border-radius: 5px; transition: all 0.3s ease; }
-    .hamburger.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .hamburger.active div:nth-child(2) { opacity: 0; }
-    .hamburger.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .loader-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--primary-color);
+      letter-spacing: 5px;
+    }
+
+    /* Header & Nav */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    header.scrolled {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+    
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
 
     nav a {
-      background-color: black; color: white; border: 2px solid white;
-      padding: 0.5rem 1.5rem; border-radius: 9999px;
-      transition: background-color 0.3s ease;
-      font-family: 'Perpetua Titling MT', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      color: var(--secondary-color);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s;
     }
-    nav a:hover { background-color: white; color: black; }
-
-    .nav-links {
-      display: flex; gap: 1rem;
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--primary-color);
     }
 
-    @media screen {
-      .hamburger { display: flex; }
-      .nav-links {
-        display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-        background-color: rgba(0, 0, 0, 0.95);
-        position: absolute; top: 3.5rem; left: 1rem;
-        padding: 1rem 1.5rem; border-radius: 0.5rem;
-        opacity: 0; transform: scaleY(0); transform-origin: top;
-        transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none;
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translateX(-50%) translateY(-50%);
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 6rem;
+      line-height: 1.1;
+      color: var(--secondary-color);
+      letter-spacing: 3px;
+    }
+    
+    .hero-title .char {
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      margin-top: 1rem;
+    }
+
+    /* General Section Styling */
+    .section {
+      padding: 6rem 5%;
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--primary-color);
+      letter-spacing: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .about-image {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    
+    /* Films Section */
+    .films-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .film-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    
+    .film-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .film-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .film-card:hover .film-card-overlay {
+      opacity: 1;
+    }
+
+    .film-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .film-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+    
+    .film-card:hover h3 {
+      transform: translateY(0);
+    }
+
+    .film-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 1rem;
+      transform: translateY(20px);
+      transition: transform 0.4s ease 0.1s;
+      display: inline-block;
+    }
+    
+    .film-card:hover .film-links a {
+      transform: translateY(0);
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .team-member {
+      text-align: center;
+    }
+
+    .team-member p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-content {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .contact-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: var(--secondary-color);
+      padding: 1rem 2.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      transition: background-color 0.3s;
+    }
+    
+    .cta-button:hover {
+      background-color: #ff3b45;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #222;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 4rem;
       }
-      .nav-links.active { opacity: 1; transform: scaleY(1); pointer-events: auto; }
+      .about-content {
+        flex-direction: column;
+      }
+      nav {
+        display: none; /* Simplification for this example, a hamburger menu would be better */
+      }
     }
-
-    @keyframes glow-animation {
-      from { text-shadow: 0 0 5px #fff, 0 0 10px #f00, 0 0 20px #f00; }
-      to { text-shadow: 0 0 10px #fff, 0 0 20px #f00, 0 0 30px #f00; }
-    }
-    h1, h2, h3, h4, h5, h6 { color: #fff; animation: glow-animation 1.5s infinite alternate; }
   </style>
-    <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TDPJQNMYHN"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'G-TDPJQNMYHN');
-  </script>
-
 </head>
 <body>
-<div id="loader" class="fixed inset-0 flex items-center justify-center bg-black z-50">
-  <div class="dots-loader"><span>.</span><span>.</span><span>.</span></div>
-</div>
 
-<header>
-  <img src="https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png" alt="SSN Pictures Banner" class="w-full h-auto object-cover">
-</header>
-
-<nav>
-  <button class="hamburger" id="hamburger"><div></div><div></div><div></div></button>
-  <div class="nav-links" id="navLinks">
-    <a href="#about">About</a>
-    <a href="#members">Members</a>
-    <a href="#discography">Discography</a>
-    <a href="#films">Short Films</a>
-    <a href="#channel">Channel</a>
+  <div class="preloader">
+    <div class="loader-text">SSN PICTURES</div>
   </div>
-</nav>
+  
+  <header>
+    <a href="#" class="logo">SSN PICTURES</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#films">Films</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<main class="space-y-28">
-  <section id="about" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY.png')] bg-fixed flex items-center justify-center px-6" data-aos="fade-up">
-    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-3xl text-center">
-      <h2 class="text-3xl font-semibold mb-4">About</h2>
-      <p class="text-lg">From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact.</p>
+  <section class="hero">
+    <video autoplay muted loop id="bg-video">
+        <source src="https://github.com/Gouravsiddoju/SSN-PICTURES/raw/main/production_house.gif" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1 class="hero-title">Lights. Camera. <br>Entertainment.</h1>
+      <p class="hero-subtitle">Crafting stories that captivate and inspire.</p>
     </div>
   </section>
 
-  <section id="members" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/production_house.gif')] bg-fixed flex items-center justify-center px-6" data-aos="fade-right">
-    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
-      <h2 class="text-3xl font-semibold mb-4">Members</h2>
-      <ul class="list-disc list-inside space-y-2 text-lg text-left">
-        <li>GOURAV SIDDARTH SIDDOJU</li>
-        <li>SREETHAN</li>
-        <li>VIGNESH</li>
-      </ul>
-    </div>
-  </section>
+  <main>
+    <section id="about" class="section">
+      <h2 class="section-title">Who We Are</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>SSN PICTURES is your ultimate destination for short films, fun content, and pure entertainment. From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
+        </div>
+        <div class="about-image">
+          <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/AA%20mugguru.jpg?raw=true" alt="SSN Pictures Team">
+        </div>
+      </div>
+    </section>
 
-  <section id="discography" class="section bg-[url('https://images.unsplash.com/photo-1607083203320-77ad91d6b7e5?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="fade-left">
-    <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-2xl text-center">
-      <h2 class="text-3xl font-semibold mb-4">Discography</h2>
-      <p class="text-lg">🎶 No albums yet. Stay tuned!</p>
-    </div>
-  </section>
-
-  <section id="films" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/SSN-PICTURES/main/GOETY_2.gif?auto=format&fit=crop&w=1400&q=80')] bg-fixed flex items-center justify-center px-6" data-aos="zoom-in">
-      <div class="bg-black bg-opacity-70 p-8 rounded-xl max-w-4xl space-y-10 w-full">
-        <h2 class="text-3xl font-semibold mb-6 text-center">Short Films</h2>
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold">ANGER</h3>
-            <p><strong>Teaser:</strong> <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" class="text-blue-400 underline">Watch</a></p>
-            <p><strong>Short Film:</strong> <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" class="text-blue-400 underline">Watch</a></p>
+    <section id="films" class="section">
+      <h2 class="section-title">Our Films</h2>
+      <div class="films-grid">
+        <div class="film-card">
+          <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster">
+          <div class="film-card-overlay">
+            <h3>GOETY</h3>
+            <div class="film-links">
+              <a href="https://youtu.be/NC9m6Ih0FUs" target="_blank">Teaser</a>
+              <a href="https://youtu.be/UCW2zcRmJzU" target="_blank">Watch Film</a>
+            </div>
           </div>
         </div>
-
-        <div class="flex flex-col md:flex-row gap-6 border border-gray-500 p-6 rounded-xl items-center" data-aos="fade-up" data-aos-delay="400">
-          <div class="w-full md:w-1/3">
-            <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster" class="rounded-lg w-full h-auto object-cover">
-          </div>
-          <div class="w-full md:w-2/3 space-y-2">
-            <h3 class="text-xl font-bold">GOETY</h3>
-            <p><strong>Teaser:</strong> <a href="https://youtu.be/NC9m6Ih0FUs" class="text-blue-400 underline">Watch</a></p>
-            <p><strong>Short Film:</strong> <a href="https://youtu.be/UCW2zcRmJzU" class="text-blue-400 underline">Watch</a></p>
+        <div class="film-card">
+          <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/91WhZ6qobAE-HD.jpg?raw=true" alt="ANGER Poster">
+          <div class="film-card-overlay">
+            <h3>ANGER</h3>
+            <div class="film-links">
+              <a href="https://youtu.be/meNXyQITMtY?si=r-6MQt6bwoj_9K2A" target="_blank">Teaser</a>
+              <a href="https://youtu.be/91WhZ6qobAE?si=LebGs-eurAmkmZsR" target="_blank">Watch Film</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-  <section id="channel" class="section bg-[url('https://raw.githubusercontent.com/Gouravsiddoju/images/main/Black%20and%20Ivory%20Modern%20Name%20YouTube%20Channel%20Art%20(2).png')] bg-center bg-cover flex items-center justify-center px-6" data-aos="fade-up">
-    <div class="bg-black bg-opacity-80 p-8 rounded-xl text-center">
-      <h2 class="text-3xl font-semibold mb-4">Subscribe to Our Channel</h2>
-      <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="bg-white text-black px-6 py-3 rounded-full text-lg font-semibold inline-block hover:bg-gray-200">📺 Visit SSN PICTURES</a>
-    </div>
-  </section>
-</main>
+    <section id="team" class="section">
+        <h2 class="section-title">The Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <p>GOURAV SIDDARTH SIDDOJU</p>
+            </div>
+            <div class="team-member">
+                <p>SREETHAN</p>
+            </div>
+            <div class="team-member">
+                <p>VIGNESH</p>
+            </div>
+        </div>
+    </section>
 
-<footer class="p-4 text-center text-sm text-gray-300 bg-black bg-opacity-90">&copy; 2025 SSN PICTURES. All rights reserved.</footer>
+    <section id="contact" class="section">
+      <div class="contact-content">
+        <h2 class="section-title">Join Our Journey</h2>
+        <p>Subscribe to our YouTube channel and never miss a story worth watching. Follow us for behind-the-scenes content and updates on our latest projects.</p>
+        <a href="https://www.youtube.com/@ssnpictures" target="_blank" class="cta-button">Subscribe on YouTube</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 SSN PICTURES. All Rights Reserved.</p>
+  </footer>
 
-<div class="back-to-top" id="backToTop">⬆ Top</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Preloader Animation
+      const preloader = document.querySelector('.preloader');
+      gsap.to(preloader, {
+        opacity: 0,
+        duration: 1,
+        delay: 1.5,
+        onComplete: () => preloader.style.display = 'none'
+      });
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
+      // Header Scroll Effect
+      const header = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      // Hero Title Animation
+      const heroTitle = document.querySelector('.hero-title');
+      const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+      heroTitle.innerHTML = chars;
+      
+      gsap.from(".hero-title .char", {
+        y: 100,
+        opacity: 0,
+        stagger: 0.05,
+        duration: 1,
+        ease: "power3.out",
+        delay: 2
+      });
+      
+      gsap.from(".hero-subtitle", {
+          opacity: 0,
+          y: 20,
+          duration: 1,
+          delay: 2.5
+      });
 
-  window.addEventListener('load', function() {
-    document.getElementById('loader').classList.add('hidden');
-  });
 
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('hidden');
-  }, 10000);
+      // Scroll-triggered Animations
+      gsap.registerPlugin(ScrollTrigger);
 
-  const hamburger = document.getElementById('hamburger');
-  const navLinks = document.getElementById('navLinks');
+      // About Section Animation
+      gsap.from("#about .about-text", {
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 80%",
+        },
+        x: -100,
+        opacity: 0,
+        duration: 1
+      });
+      
+      gsap.from("#about .about-image", {
+        scrollTrigger: {
+          trigger: "#about",
+          start: "top 80%",
+        },
+        x: 100,
+        opacity: 0,
+        duration: 1
+      });
 
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-  });
-
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTop.style.display = 'block';
-    } else {
-      backToTop.style.display = 'none';
-    }
-  });
-  backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-</script>
+      // Films Section Animation
+      gsap.from(".film-card", {
+        scrollTrigger: {
+          trigger: "#films",
+          start: "top 80%",
+        },
+        y: 100,
+        opacity: 0,
+        stagger: 0.3,
+        duration: 1
+      });
+      
+      // Team Section Animation
+      gsap.from(".team-member", {
+        scrollTrigger: {
+          trigger: "#team",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8
+      });
+      
+      // Contact Section Animation
+      gsap.from("#contact .contact-content > *", {
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.3,
+        duration: 1
+      });
+    });
+  </script>
 </body>
 </html>
