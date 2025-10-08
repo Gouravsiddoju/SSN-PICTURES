@@ -363,7 +363,7 @@
         <source src="https://github.com/Gouravsiddoju/SSN-PICTURES/raw/main/production_house.gif" type="video/mp4">
     </video>
     <div class="hero-content">
-      <h1 class="hero-title">Lights. Camera. Entertainment.</br></h1>
+      <h1 class="hero-title">Lights. Camera. Entertainment.</h1>
       <p class="hero-subtitle">Crafting stories that captivate and inspire.</p>
     </div>
   </section>
@@ -437,6 +437,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+    
       // Preloader Animation
       const preloader = document.querySelector('.preloader');
       gsap.to(preloader, {
@@ -458,6 +460,7 @@
       
       // Hero Title Animation
       const heroTitle = document.querySelector('.hero-title');
+      // Split the title into characters for the animation
       const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
       heroTitle.innerHTML = chars;
       
@@ -476,10 +479,53 @@
           duration: 1,
           delay: 2.5
       });
+      
+      // Count-up animation function
+      function countUp(targetId, endVal, duration = 2) {
+          const target = document.getElementById(targetId);
+          const counter = { val: 0 }; // Start counter at 0
 
+          gsap.to(counter, {
+              val: endVal,
+              duration: duration,
+              ease: "power2.out",
+              onUpdate: () => {
+                  target.innerText = Math.ceil(counter.val).toLocaleString();
+              }
+          });
+      }
+      
+      // Function to get the defined subscriber count
+      function getSubscriberCount() {
+          // --- EDIT THIS NUMBER ---
+          // Set your YouTube subscriber count here.
+          return 1500; 
+          // --------------------
+      }
 
-      // Scroll-triggered Animations
-      gsap.registerPlugin(ScrollTrigger);
+      // Stats Section Animation - Triggered on scroll
+      ScrollTrigger.create({
+          trigger: "#stats",
+          start: "top 80%",
+          onEnter: () => {
+              const subscriberCount = getSubscriberCount();
+              countUp("films-count", 2);
+              countUp("team-count", 3);
+              countUp("subs-count", subscriberCount);
+          },
+          once: true // Ensures the animation only runs once
+      });
+      
+      gsap.from(".stat-item", {
+        scrollTrigger: {
+            trigger: "#stats",
+            start: "top 80%",
+        },
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8
+      });
 
       // About Section Animation
       gsap.from("#about .about-text", {
@@ -541,4 +587,5 @@
   </script>
 </body>
 </html>
+
 
