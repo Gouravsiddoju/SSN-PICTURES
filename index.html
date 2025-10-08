@@ -52,14 +52,13 @@
       z-index: 1000;
     }
 
-    /* --- NEW ANIMATED GRADIENT TEXT --- */
     .animated-gradient-text {
         font-family: 'Bebas Neue', sans-serif;
         font-size: 3.5rem;
         letter-spacing: 5px;
         font-weight: bold;
         position: relative;
-        padding: 1.5rem 3rem; /* Added padding for better effect */
+        padding: 1.5rem 3rem;
     }
 
     .gradient-overlay {
@@ -71,7 +70,7 @@
         background-image: linear-gradient(120deg, var(--primary-color), #ff8a8a, var(--primary-color));
         background-size: 300% 100%;
         animation: gradient 4s linear infinite;
-        border-radius: 1.25rem; /* Matches the container */
+        border-radius: 1.25rem;
         z-index: 0;
         pointer-events: none;
     }
@@ -79,12 +78,12 @@
     .gradient-overlay::before {
         content: '';
         position: absolute;
-        width: calc(100% - 4px); /* Creates the border effect */
+        width: calc(100% - 4px);
         height: calc(100% - 4px);
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-color: var(--background-color); /* Matches site background */
+        background-color: var(--background-color);
         border-radius: inherit;
         z-index: -1;
     }
@@ -106,7 +105,6 @@
         color: transparent;
         animation: gradient 4s linear infinite;
     }
-    /* --- END ANIMATED GRADIENT TEXT --- */
 
     /* Header & Nav */
     header {
@@ -202,6 +200,7 @@
     
     .hero-title .char {
       display: inline-block;
+      overflow: hidden; /* Helps contain the animation */
     }
 
     .hero-subtitle {
@@ -546,9 +545,19 @@
         }
       });
       
+      // --- HERO TITLE ANIMATION - FIXED ---
       const heroTitle = document.querySelector('.hero-title');
-      const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
-      heroTitle.innerHTML = chars;
+      const originalText = heroTitle.innerHTML;
+      
+      // Split the text by the <br> tag to handle multiline text
+      const lines = originalText.split(/<br\s*\/?>/i);
+      
+      // Wrap each character in each line with a span, then join with <br>
+      const newContent = lines.map(line => 
+        line.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('')
+      ).join('<br>');
+
+      heroTitle.innerHTML = newContent;
       
       gsap.from(".hero-title .char", {
         y: 100,
@@ -558,6 +567,7 @@
         ease: "power3.out",
         delay: 4
       });
+      // --- END OF FIX ---
       
       gsap.from(".hero-subtitle", {
           opacity: 0,
@@ -663,4 +673,3 @@
   </script>
 </body>
 </html>
-
