@@ -52,40 +52,61 @@
       z-index: 1000;
     }
 
-    .loader-text {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 3.5rem; /* Slightly larger font */
-      letter-spacing: 5px;
-      font-weight: bold;
-    }
-    
-    /* --- NEW & IMPROVED SHINY/GLOWING TEXT ANIMATION --- */
-    .shiny-text {
-      color: var(--primary-color); /* Base color is red */
-      background: linear-gradient(
-        120deg,
-        var(--primary-color) 30%,
-        #ff8a8a 50%, /* Lighter red for the "glow" */
-        var(--primary-color) 70%
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent; /* CRUCIAL: Makes the text transparent to show the gradient */
-      animation: shine 2.5s linear infinite;
-      text-shadow: 0 0 10px rgba(229, 9, 20, 0.5), 0 0 20px rgba(229, 9, 20, 0.3); /* Adds a soft outer glow */
+    /* --- NEW ANIMATED GRADIENT TEXT --- */
+    .animated-gradient-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3.5rem;
+        letter-spacing: 5px;
+        font-weight: bold;
+        position: relative;
+        padding: 1.5rem 3rem; /* Added padding for better effect */
     }
 
-    @keyframes shine {
-      0% {
-        background-position: 150%;
-      }
-      100% {
-        background-position: -150%;
-      }
+    .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: linear-gradient(120deg, var(--primary-color), #ff8a8a, var(--primary-color));
+        background-size: 300% 100%;
+        animation: gradient 4s linear infinite;
+        border-radius: 1.25rem; /* Matches the container */
+        z-index: 0;
+        pointer-events: none;
     }
-    /* --- END SHINY TEXT ANIMATION --- */
 
+    .gradient-overlay::before {
+        content: '';
+        position: absolute;
+        width: calc(100% - 4px); /* Creates the border effect */
+        height: calc(100% - 4px);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--background-color); /* Matches site background */
+        border-radius: inherit;
+        z-index: -1;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .text-content {
+        display: inline-block;
+        position: relative;
+        z-index: 2;
+        background-image: linear-gradient(120deg, var(--primary-color), #ff8a8a, var(--primary-color));
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: gradient 4s linear infinite;
+    }
+    /* --- END ANIMATED GRADIENT TEXT --- */
 
     /* Header & Nav */
     header {
@@ -394,7 +415,10 @@
 <body>
 
   <div class="preloader">
-    <div class="loader-text shiny-text">SSN PICTURES</div>
+    <div class="animated-gradient-text">
+        <div class="gradient-overlay"></div>
+        <span class="text-content">SSN PICTURES</span>
+    </div>
   </div>
   
   <header>
@@ -505,9 +529,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
     
-      // Preloader Animation
       const preloader = document.querySelector('.preloader');
-      // FIXED: Increased delay to make animation visible
       gsap.to(preloader, {
         opacity: 0,
         duration: 1,
@@ -515,7 +537,6 @@
         onComplete: () => preloader.style.display = 'none'
       });
 
-      // Header Scroll Effect
       const header = document.querySelector('header');
       window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -525,12 +546,10 @@
         }
       });
       
-      // Hero Title Animation
       const heroTitle = document.querySelector('.hero-title');
       const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
       heroTitle.innerHTML = chars;
       
-      // FIXED: Adjusted delay to happen after preloader
       gsap.from(".hero-title .char", {
         y: 100,
         opacity: 0,
@@ -547,7 +566,6 @@
           delay: 4.5 
       });
       
-      // Count-up animation function
       function countUp(targetId, endVal, duration = 2) {
           const target = document.getElementById(targetId);
           const counter = { val: 0 };
@@ -566,7 +584,6 @@
           return 1500; 
       }
 
-      // Stats Section Animation
       ScrollTrigger.create({
           trigger: "#stats",
           start: "top 80%",
@@ -590,7 +607,6 @@
         duration: 0.8
       });
 
-      // About Section Animation
       gsap.from("#about .about-text", {
         scrollTrigger: {
           trigger: "#about",
@@ -611,7 +627,6 @@
         duration: 1
       });
 
-      // Films Section Animation
       gsap.from(".film-card", {
         scrollTrigger: {
           trigger: "#films",
@@ -623,7 +638,6 @@
         duration: 1
       });
       
-      // Team Section Animation
       gsap.from(".team-member", {
         scrollTrigger: {
           trigger: "#team",
@@ -635,7 +649,6 @@
         duration: 0.8
       });
       
-      // Contact Section Animation
       gsap.from("#contact .contact-content > *", {
         scrollTrigger: {
           trigger: "#contact",
