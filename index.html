@@ -200,7 +200,6 @@
     
     .hero-title .char {
       display: inline-block;
-      overflow: hidden; /* Helps contain the animation */
     }
 
     .hero-subtitle {
@@ -435,7 +434,7 @@
         <source src="https://github.com/Gouravsiddoju/SSN-PICTURES/raw/main/production_house.gif" type="video/mp4">
     </video>
     <div class="hero-content">
-      <h1 class="hero-title">Lights. Camera. <br> Entertainment.</h1>
+      <h1 class="hero-title">Lights. Camera. <br>Entertainment.</h1>
       <p class="hero-subtitle">Crafting stories that captivate and inspire.</p>
     </div>
   </section>
@@ -545,19 +544,26 @@
         }
       });
       
-      // --- HERO TITLE ANIMATION - FIXED ---
+      // --- DEFINITIVE FIX FOR THE <br> TAG ---
+      // This new logic correctly processes text and HTML tags separately
+      // to ensure the line break works while allowing character animation.
       const heroTitle = document.querySelector('.hero-title');
-      const originalText = heroTitle.innerHTML;
-      
-      // Split the text by the <br> tag to handle multiline text
-      const lines = originalText.split(/<br\s*\/?>/i);
-      
-      // Wrap each character in each line with a span, then join with <br>
-      const newContent = lines.map(line => 
-        line.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('')
-      ).join('<br>');
+      const nodes = [...heroTitle.childNodes]; // Get all child nodes (text and elements like <br>)
+      heroTitle.innerHTML = ''; // Clear the original content
 
-      heroTitle.innerHTML = newContent;
+      nodes.forEach(node => {
+        if (node.nodeType === 3) { // This is a text node
+          const text = node.textContent;
+          text.split('').forEach(char => {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.innerHTML = char === ' ' ? '&nbsp;' : char;
+            heroTitle.appendChild(span);
+          });
+        } else { // This is an element node (e.g., <br>)
+          heroTitle.appendChild(node.cloneNode());
+        }
+      });
       
       gsap.from(".hero-title .char", {
         y: 100,
@@ -673,4 +679,3 @@
   </script>
 </body>
 </html>
-
