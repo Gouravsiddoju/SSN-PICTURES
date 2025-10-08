@@ -54,32 +54,34 @@
 
     .loader-text {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 3rem;
+      font-size: 3.5rem; /* Slightly larger font */
       letter-spacing: 5px;
+      font-weight: bold;
     }
     
-    /* --- NEW SHINY TEXT ANIMATION --- */
+    /* --- NEW & IMPROVED SHINY/GLOWING TEXT ANIMATION --- */
     .shiny-text {
-      color: #777; /* Base color for the text */
+      color: var(--primary-color); /* Base color is red */
       background: linear-gradient(
         120deg,
-        rgba(255, 255, 255, 0) 40%,
-        var(--primary-color) 50%,
-        rgba(255, 255, 255, 0) 60%
+        var(--primary-color) 30%,
+        #ff8a8a 50%, /* Lighter red for the "glow" */
+        var(--primary-color) 70%
       );
       background-size: 200% 100%;
       -webkit-background-clip: text;
       background-clip: text;
-      display: inline-block;
-      animation: shine 3s linear infinite;
+      -webkit-text-fill-color: transparent; /* CRUCIAL: Makes the text transparent to show the gradient */
+      animation: shine 2.5s linear infinite;
+      text-shadow: 0 0 10px rgba(229, 9, 20, 0.5), 0 0 20px rgba(229, 9, 20, 0.3); /* Adds a soft outer glow */
     }
 
     @keyframes shine {
       0% {
-        background-position: 100%;
+        background-position: 150%;
       }
       100% {
-        background-position: -100%;
+        background-position: -150%;
       }
     }
     /* --- END SHINY TEXT ANIMATION --- */
@@ -384,7 +386,7 @@
         flex-direction: column;
       }
       nav {
-        display: none; /* Simplification for this example, a hamburger menu would be better */
+        display: none;
       }
     }
   </style>
@@ -505,10 +507,11 @@
     
       // Preloader Animation
       const preloader = document.querySelector('.preloader');
+      // FIXED: Increased delay to make animation visible
       gsap.to(preloader, {
         opacity: 0,
         duration: 1,
-        delay: 2.5, // Increased delay to show off the shiny animation
+        delay: 3.5, 
         onComplete: () => preloader.style.display = 'none'
       });
 
@@ -527,20 +530,21 @@
       const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
       heroTitle.innerHTML = chars;
       
+      // FIXED: Adjusted delay to happen after preloader
       gsap.from(".hero-title .char", {
         y: 100,
         opacity: 0,
         stagger: 0.05,
         duration: 1,
         ease: "power3.out",
-        delay: 3 // Adjusted delay
+        delay: 4
       });
       
       gsap.from(".hero-subtitle", {
           opacity: 0,
           y: 20,
           duration: 1,
-          delay: 3.5 // Adjusted delay
+          delay: 4.5 
       });
       
       // Count-up animation function
@@ -558,7 +562,6 @@
           });
       }
       
-      // Function to get the defined subscriber count
       function getSubscriberCount() {
           return 1500; 
       }
