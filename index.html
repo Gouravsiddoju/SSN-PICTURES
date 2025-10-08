@@ -55,9 +55,35 @@
     .loader-text {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 3rem;
-      color: var(--primary-color);
       letter-spacing: 5px;
     }
+    
+    /* --- NEW SHINY TEXT ANIMATION --- */
+    .shiny-text {
+      color: #777; /* Base color for the text */
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 40%,
+        var(--primary-color) 50%,
+        rgba(255, 255, 255, 0) 60%
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      display: inline-block;
+      animation: shine 3s linear infinite;
+    }
+
+    @keyframes shine {
+      0% {
+        background-position: 100%;
+      }
+      100% {
+        background-position: -100%;
+      }
+    }
+    /* --- END SHINY TEXT ANIMATION --- */
+
 
     /* Header & Nav */
     header {
@@ -174,6 +200,27 @@
       margin-bottom: 3rem;
       color: var(--primary-color);
       letter-spacing: 2px;
+    }
+    
+    /* Stats Section */
+    .stats-grid {
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-item .count-up-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        color: var(--primary-color);
+    }
+
+    .stat-item .stat-label {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        margin-top: 0.5rem;
     }
 
     /* About Section */
@@ -345,7 +392,7 @@
 <body>
 
   <div class="preloader">
-    <div class="loader-text">SSN PICTURES</div>
+    <div class="loader-text shiny-text">SSN PICTURES</div>
   </div>
   
   <header>
@@ -363,14 +410,31 @@
         <source src="https://github.com/Gouravsiddoju/SSN-PICTURES/raw/main/production_house.gif" type="video/mp4">
     </video>
     <div class="hero-content">
-      <h1 class="hero-title">Lights. Camera. Entertainment.</h1>
+      <h1 class="hero-title">Lights. Camera. <br>Entertainment.</h1>
       <p class="hero-subtitle">Crafting stories that captivate and inspire.</p>
     </div>
   </section>
 
   <main>
+    <section id="stats" class="section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span id="films-count" class="count-up-text">0</span>
+                <p class="stat-label">Short Films</p>
+            </div>
+            <div class="stat-item">
+                <span id="team-count" class="count-up-text">0</span>
+                <p class="stat-label">Team Members</p>
+            </div>
+            <div class="stat-item">
+                <span id="subs-count" class="count-up-text">0</span>
+                <p class="stat-label">YouTube Subscribers</p>
+            </div>
+        </div>
+    </section>
+  
     <section id="about" class="section">
-      <h2 class="section-title">ABOUT US</h2>
+      <h2 class="section-title">Who We Are</h2>
       <div class="about-content">
         <div class="about-text">
           <p>SSN PICTURES is your ultimate destination for short films, fun content, and pure entertainment. From gripping stories and emotional rollercoasters to laugh-out-loud moments and creative twists, we bring you bite-sized cinema with a big impact. Whether you're into drama, comedy, thrillers, or feel-good vibes, there's something here for everyone.</p>
@@ -382,7 +446,7 @@
     </section>
 
     <section id="films" class="section">
-      <h2 class="section-title">OUR FILMS</h2>
+      <h2 class="section-title">Our Films</h2>
       <div class="films-grid">
         <div class="film-card">
           <img src="https://github.com/Gouravsiddoju/SSN-PICTURES/blob/main/GOETY.png?raw=true" alt="GOETY Poster">
@@ -408,7 +472,7 @@
     </section>
 
     <section id="team" class="section">
-        <h2 class="section-title">THE TEAM</h2>
+        <h2 class="section-title">The Team</h2>
         <div class="team-grid">
             <div class="team-member">
                 <p>GOURAV SIDDARTH SIDDOJU</p>
@@ -444,7 +508,7 @@
       gsap.to(preloader, {
         opacity: 0,
         duration: 1,
-        delay: 1.5,
+        delay: 2.5, // Increased delay to show off the shiny animation
         onComplete: () => preloader.style.display = 'none'
       });
 
@@ -460,7 +524,6 @@
       
       // Hero Title Animation
       const heroTitle = document.querySelector('.hero-title');
-      // Split the title into characters for the animation
       const chars = heroTitle.innerHTML.split('').map(char => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
       heroTitle.innerHTML = chars;
       
@@ -470,20 +533,20 @@
         stagger: 0.05,
         duration: 1,
         ease: "power3.out",
-        delay: 2
+        delay: 3 // Adjusted delay
       });
       
       gsap.from(".hero-subtitle", {
           opacity: 0,
           y: 20,
           duration: 1,
-          delay: 2.5
+          delay: 3.5 // Adjusted delay
       });
       
       // Count-up animation function
       function countUp(targetId, endVal, duration = 2) {
           const target = document.getElementById(targetId);
-          const counter = { val: 0 }; // Start counter at 0
+          const counter = { val: 0 };
 
           gsap.to(counter, {
               val: endVal,
@@ -497,13 +560,10 @@
       
       // Function to get the defined subscriber count
       function getSubscriberCount() {
-          // --- EDIT THIS NUMBER ---
-          // Set your YouTube subscriber count here.
           return 1500; 
-          // --------------------
       }
 
-      // Stats Section Animation - Triggered on scroll
+      // Stats Section Animation
       ScrollTrigger.create({
           trigger: "#stats",
           start: "top 80%",
@@ -513,7 +573,7 @@
               countUp("team-count", 3);
               countUp("subs-count", subscriberCount);
           },
-          once: true // Ensures the animation only runs once
+          once: true
       });
       
       gsap.from(".stat-item", {
@@ -587,5 +647,3 @@
   </script>
 </body>
 </html>
-
-
