@@ -434,7 +434,11 @@
         <source src="https://github.com/Gouravsiddoju/SSN-PICTURES/raw/main/production_house.gif" type="video/mp4">
     </video>
     <div class="hero-content">
-      <h1 class="hero-title">Lights. Camera. <br>Entertainment.</h1>
+      <h1 class="hero-title">
+          <span class="char">L</span><span class="char">i</span><span class="char">g</span><span class="char">h</span><span class="char">t</span><span class="char">s</span><span class="char">.</span><span class="char">&nbsp;</span><span class="char">C</span><span class="char">a</span><span class="char">m</span><span class="char">e</span><span class="char">r</span><span class="char">a</span><span class="char">.</span><span class="char">&nbsp;</span>
+          <br>
+          <span class="char">E</span><span class="char">n</span><span class="char">t</span><span class="char">e</span><span class="char">r</span><span class="char">t</span><span class="char">a</span><span class="char">i</span><span class="char">n</span><span class="char">m</span><span class="char">e</span><span class="char">n</span><span class="char">t</span><span class="char">.</span>
+      </h1>
       <p class="hero-subtitle">Crafting stories that captivate and inspire.</p>
     </div>
   </section>
@@ -544,27 +548,8 @@
         }
       });
       
-      // --- DEFINITIVE FIX FOR THE <br> TAG ---
-      // This new logic correctly processes text and HTML tags separately
-      // to ensure the line break works while allowing character animation.
-      const heroTitle = document.querySelector('.hero-title');
-      const nodes = [...heroTitle.childNodes]; // Get all child nodes (text and elements like <br>)
-      heroTitle.innerHTML = ''; // Clear the original content
-
-      nodes.forEach(node => {
-        if (node.nodeType === 3) { // This is a text node
-          const text = node.textContent;
-          text.split('').forEach(char => {
-            const span = document.createElement('span');
-            span.className = 'char';
-            span.innerHTML = char === ' ' ? '&nbsp;' : char;
-            heroTitle.appendChild(span);
-          });
-        } else { // This is an element node (e.g., <br>)
-          heroTitle.appendChild(node.cloneNode());
-        }
-      });
-      
+      // --- HERO TITLE ANIMATION - SIMPLIFIED ---
+      // The animation now targets the pre-split spans directly
       gsap.from(".hero-title .char", {
         y: 100,
         opacity: 0,
@@ -573,7 +558,6 @@
         ease: "power3.out",
         delay: 4
       });
-      // --- END OF FIX ---
       
       gsap.from(".hero-subtitle", {
           opacity: 0,
